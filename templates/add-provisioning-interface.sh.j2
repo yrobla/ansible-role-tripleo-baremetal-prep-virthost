@@ -6,6 +6,7 @@ set -eux
 
 # Add static ip to nic on provisioning network
 sudo cat > /etc/sysconfig/network-scripts/ifcfg-{{ virthost_provisioning_interface }} << EOF
+TYPE=Ethernet
 NAME={{ virthost_provisioning_interface }}
 IPADDR={{ virthost_provisioning_ip }}
 NETMASK={{ virthost_provisioning_netmask }}
