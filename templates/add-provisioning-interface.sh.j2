@@ -7,7 +7,7 @@ set -eux
 # Add static ip to nic on provisioning network
 {% if virthost_provisioning_vlan is defined %}
 sudo cat > /etc/sysconfig/network-scripts/ifcfg-{{ virthost_provisioning_interface }} << EOF
-DEVICE={{ virthost_provisioning_ip }}
+DEVICE={{ virthost_provisioning_interface }}
 TYPE=Ethernet
 BOOTPROTO=none
 ONBOOT=yes
