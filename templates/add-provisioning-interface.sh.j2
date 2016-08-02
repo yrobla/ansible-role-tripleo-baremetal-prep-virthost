@@ -24,6 +24,7 @@ IPV6_PEERROUTES=yes
 EOF
 
 {% if virthost_provisioning_vlan is defined %}
+sudo cat > /etc/sysconfig/network-scripts/ifcfg-{{ virthost_provisioning_vlan }} << EOF
 DEVICE={{ virthost_provisioning_vlan }}
 BOOTPROTO=none
 ONBOOT=yes
@@ -31,6 +32,7 @@ IPADDR={{ virthost_provisioning_ip }}
 NETMASK={{ virthost_provisioning_netmask }}
 NETWORK={{ virthost_provisioning_network }}
 VLAN=yes
+EOF
 {% endif %}
 
 # Bring the nic down first
