@@ -44,16 +44,17 @@ IPV6_PEERROUTES=yes
 EOF
 {% endif %}
 
+# Add provisioning interface to the "brovc" bridge
+{% if virthost_provisioning_vlan is defined %}
+systemctl restart network
+sudo brctl addif brovc {{ virthost_provisioning_vlan }}
+{% else %}
 # Bring the nic down first
 sudo ifdown {{ virthost_provisioning_interface }}
 
 # Bring the nic up again
 sudo ifup {{ virthost_provisioning_interface }}
 
-# Add provisioning interface to the "brovc" bridge
-{% if virthost_provisioning_vlan is defined %}
-sudo brctl addif brovc {{ virthost_provisioning_vlan }}
-{% else %}
-sudo brctl addif brovc {{ virthost_provisioning_ip }}
+sudo brctl addif brovc {{ virthost_provisioning_interface }}
 {% endif %}
 
