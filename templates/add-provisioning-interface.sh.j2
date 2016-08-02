@@ -42,6 +42,7 @@ PEERROUTES=yes
 IPV6_PEERDNS=yes
 IPV6_PEERROUTES=yes
 EOF
+{% endif %}
 
 # Bring the nic down first
 sudo ifdown {{ virthost_provisioning_interface }}
