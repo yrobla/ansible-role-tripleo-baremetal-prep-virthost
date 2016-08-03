@@ -51,9 +51,9 @@ EOF
 {% if virthost_provisioning_vlan is defined %}
 # Bring the nic down first
 sudo ifdown {{ virthost_provisioning_interface }}
-sudo ifdown {{ virthost_provisioning_vlan }}
-
 sudo ifup {{ virthost_provisioning_interface }}
+
+sudo ifdown {{ virthost_provisioning_vlan }}
 sudo ifup {{ virthost_provisioning_vlan }}
 sudo brctl addif brovc {{ virthost_provisioning_vlan }}
 {% else %}
