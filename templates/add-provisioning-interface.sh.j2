@@ -54,7 +54,10 @@ sudo ifdown {{ virthost_provisioning_vlan }}
 sudo ifdown {{ virthost_provisioning_interface }}
 sudo ifup {{ virthost_provisioning_interface }}
 sudo ifup {{ virthost_provisioning_vlan }}
-sudo brctl addif brovc {{ virthost_provisioning_interface }}
+sudo brctl addif brovc {{ virthost_provisioning_interface }} || true
+
+# sleep for a while to give time for network to be up
+sleep 5
 
 {% else %}
 # Bring the nic down first
