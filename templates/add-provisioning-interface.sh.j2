@@ -49,7 +49,13 @@ EOF
 
 # Add provisioning interface to the "brovc" bridge
 {% if virthost_provisioning_vlan is defined %}
-sudo brctl addif brovc {{ virthost_provisioning_vlan }}
+
+sudo ifdown {{ virthost_provisioning_vlan }}
+sudo ifdown {{ virthost_provisioning_interface }}
+sudo ifup {{ virthost_provisioning_interface }}
+sudo ifup {{ virthost_provisioning_vlan }}
+sudo brctl addif brovc {{ virthost_provisioning_interface }}
+
 {% else %}
 # Bring the nic down first
 sudo ifdown {{ virthost_provisioning_interface }}
