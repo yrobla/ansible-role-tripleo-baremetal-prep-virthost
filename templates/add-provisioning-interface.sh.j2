@@ -49,8 +49,6 @@ EOF
 
 # Add provisioning interface to the "brovc" bridge
 {% if virthost_provisioning_vlan is defined %}
-# restart networking to pick up vlan
-service network restart || true
 sudo brctl addif brovc {{ virthost_provisioning_vlan }}
 {% else %}
 # Bring the nic down first
