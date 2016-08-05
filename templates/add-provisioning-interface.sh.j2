@@ -29,10 +29,10 @@ IPV6_PEERROUTES=yes
 EOF
 
 # Bring the nic down first
-sudo ifdown {{ virthost_provisioning_interface }}
+#sudo ifdown {{ virthost_provisioning_interface }}
 
 # Bring the nic up again
-sudo ifup {{ virthost_provisioning_interface }}
+#sudo ifup {{ virthost_provisioning_interface }}
 
 # Add provisioning interface to the "brovc" bridge
 sudo brctl addif brovc {{ virthost_provisioning_interface }}
