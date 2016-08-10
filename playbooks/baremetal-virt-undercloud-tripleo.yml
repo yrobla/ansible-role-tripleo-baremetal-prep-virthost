@@ -76,7 +76,7 @@
   hosts: undercloud
   gather_facts: no
   roles:
-    - tripleo-overcloud-prep-baremetal
+    - overcloud-prep-baremetal
 
 - name:  Deploy the overcloud
   hosts: undercloud
